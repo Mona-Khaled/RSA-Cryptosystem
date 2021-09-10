@@ -1,0 +1,62 @@
+ static string add(string number1, string number2)
+            {
+                StringBuilder result = new StringBuilder();
+                //string result = "";
+                int carry = 0;
+                // if num1 is longer than num2 swap them
+                // num2 should be the longest string
+                if (number1.Length > number2.Length)
+                {
+                    string temp = number1;
+                    number1 = number2;
+                    number2 = temp;
+                }
+                int num1_len = number1.Length;
+                int num2_len = number2.Length;
+                int diff_len = num2_len - num1_len;
+                //step1 add numbers from mun1 and num2 till num1 length which is the shortest one
+                for (int i = num1_len - 1; i >= 0; i--)
+                {
+                    int sum = ((int)(number1[i] - '0') + (int)(number2[i + diff_len] - '0') + carry);
+                    result.Append((char)(sum % 10 + '0'));
+                    carry = sum / 10;
+                }
+                //step2 add the rest numbers of num2 which is the longest one
+                for (int i = diff_len - 1; i >= 0; i--)
+                {
+                    int sum = ((int)(number2[i] - '0') + carry);
+                    result.Append((char)(sum % 10 + '0'));
+                    carry = sum / 10;
+                }
+                //step3 add carry
+                if (carry > 0)
+                {
+                    result.Append( (char)(carry + '0'));
+                }
+                //reverse result string
+                string result_builder = result.ToString();//tostring>>>>>O(N)
+                char[] newresult = result_builder.ToCharArray();
+                Array.Reverse(newresult);
+                StringBuilder final_result = new StringBuilder();
+                for (int i = 0; i < newresult.Length; i++)//llength>>>>O(1)
+                {
+                    if (newresult[i] == '0')
+                    {
+                        newresult[i] = '$';
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                for (int i = 0; i < newresult.Length; i++)
+                {
+                    if (newresult[i] != '$')
+                    {
+                        final_result.Append(newresult[i]);//append>>>>>O(1)
+                    }
+                }
+                return final_result.ToString();//tostring>>>>>O(N),return>>>>>O(1)
+                    //return new string(newresult);
+                //return result;
+            }

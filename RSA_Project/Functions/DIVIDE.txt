@@ -1,0 +1,27 @@
+static string div(string number1, string number2)
+            {
+                //number2 is the divisor "number1/number2"
+                StringBuilder result = new StringBuilder();
+                int divisor = 0;
+                int counter = 0;
+                Int32.TryParse(number2, out divisor);
+                int temp = (int)(number1[counter] - '0');
+                while (temp < divisor)
+                {
+                    temp = temp * 10 + (int)(number1[counter + 1] - '0');
+                    counter++;
+                }
+                counter++;
+                while (number1.Length > counter)
+                {
+                    result.Append((char)(temp / divisor + '0'));
+                    temp = (temp % divisor) * 10 + (int)(number1[counter] - '0');
+                    counter++;
+                }
+                result.Append((char)(temp / divisor + '0'));
+                if (result.Length == 0)
+                {
+                    return "0";
+                }
+                return result.ToString();
+            }

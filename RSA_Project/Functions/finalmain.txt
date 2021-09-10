@@ -1,0 +1,77 @@
+static void Main(string[] args)
+            {
+                Big_Integer b = new Big_Integer();
+                ////////////FOR ADD FUNCTION///////////////
+                //read test cases for add function in a list
+                List<string> add_list = new List<string>();
+                StreamReader sr_add = new StreamReader("AddTestCases.txt");
+                string num_to_add = sr_add.ReadLine();
+                while (num_to_add != null)
+                {
+                    add_list.Add(num_to_add);
+                    num_to_add = sr_add.ReadLine();
+                }
+                sr_add.Close();
+                //create file and write the outputs in it "add outputs"
+                FileStream fs_add = new FileStream("Add-Output.txt", FileMode.OpenOrCreate);
+                StreamWriter sw_add = new StreamWriter(fs_add);
+                for (int i = 0; i < add_list.Count; i += 2)
+                {
+                    string result_add = b.add(add_list[i], add_list[i + 1]);
+                    sw_add.WriteLine(result_add);
+                    sw_add.WriteLine();
+                }
+                sw_add.Close();
+                fs_add.Close();
+                ////////////FOR SUB FUNCTION///////////////
+                //read test cases for sub function in a list
+                List<string> sub_list = new List<string>();
+                StreamReader sr_sub = new StreamReader("SubtractTestCases.txt");
+                string num_to_sub = sr_sub.ReadLine();
+                while (num_to_sub != null)
+                {
+                    sub_list.Add(num_to_sub);
+                    num_to_sub = sr_sub.ReadLine();
+                }
+                sr_add.Close();
+                //create file and write the outputs in it "sub outputs"
+                FileStream fs_sub = new FileStream("Sub-Output.txt", FileMode.OpenOrCreate);
+                StreamWriter sw_sub = new StreamWriter(fs_sub);
+                for (int i = 0; i < sub_list.Count; i += 2)
+                {
+                    string result_sub = b.sub(sub_list[i], sub_list[i + 1]);
+                    sw_sub.WriteLine(result_sub);
+                    sw_sub.WriteLine();
+                }
+                sw_sub.Close();
+                fs_sub.Close();
+                ////////////FOR MUL FUNCTION///////////////
+                //read test cases for mul function in a list
+                List<string> mul_list = new List<string>();
+                StreamReader sr_mul = new StreamReader("MultiplyTestCases.txt");
+                string num_to_mul = sr_mul.ReadLine();
+                while (num_to_mul != null)
+                {
+                    mul_list.Add(num_to_mul);
+                    num_to_mul = sr_mul.ReadLine();
+                }
+                sr_mul.Close();
+                //create file and write the outputs in it "mul outputs"
+                FileStream fs_mul = new FileStream("Mul-Output.txt", FileMode.OpenOrCreate);
+                StreamWriter sw_mul = new StreamWriter(fs_mul);
+                for (int i = 0; i < mul_list.Count; i += 2)
+                {
+                    string result_mul = b.mul(mul_list[i], mul_list[i + 1]);
+                    sw_mul.WriteLine(result_mul);
+                    sw_mul.WriteLine();
+                }
+                sw_mul.Close();
+                fs_mul.Close();
+                //string x = "12";
+                //string y = "23";
+                //string a = "1537983";
+                //string b = "23606766456";
+                //string x = mul(a,b);
+                //x += y;
+                //Console.WriteLine(x);
+            }
